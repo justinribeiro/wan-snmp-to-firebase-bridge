@@ -4,7 +4,7 @@ This script reads SNMP data from a network interface and pushes that data to a F
 
 ## Why?
 
-Little something something to wire up to my [bandwidth-gauge Polymer element](https://github.com/justinribeiro/bandwidth-gauge) for [GDG Oakdales Firebase Code Day](http://www.meetup.com/GDG-Oakdale/events/220949519/).
+Little something something to wire up to my [bandwidth-gauge Polymer element](https://github.com/justinribeiro/bandwidth-gauge) for [GDG Oakdale's Firebase Code Day](http://www.meetup.com/GDG-Oakdale/events/220949519/).
 
 ## Dependencies
 
