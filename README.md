@@ -15,31 +15,31 @@ Little something something to wire up to my [bandwidth-gauge Polymer element](ht
 
 This will vary based on your platform, but I'll outline the steps that worked for me on Ubuntu 14.04 LTS:
 
-1. Install libffi-dev
+1.Install libffi-dev
 ```
 sudo apt-get libffi-dev
 ```
-2. Install libsmi-dev
+2.Install libsmi-dev
 ```
 sudo apt-get install libsmi2-dev
 ```
-3. You'll need at least the base mibs for snmp, so we need to install the downloader tool, snmp-mibs-downloader:
+3.You'll need at least the base mibs for snmp, so we need to install the downloader tool, snmp-mibs-downloader:
 ```
 sudo apt-get install snmp-mibs-downloader
 ```
-4. Download the mibs by running:
+4.Download the mibs by running:
 ```
 sudo download-mibs
 ```
-5. Install snimpy:
+5.Install snimpy:
 ```
 pip install snimpy
 ```
-6. Install firebase-python:
+6.Install firebase-python:
 ```
 pip install firebase-python
 ```
-7. Edit the `wan-snmp-to-firebase.py` paths in the file:
+7.Edit the `wan-snmp-to-firebase.py` paths in the file:
 ```
 # Our Firebase application
 _FIREBASE_ENDPOINT = "https://[YOUR_APP_HERE].firebaseio.com/"
@@ -54,8 +54,8 @@ _WAN_SNMP_VERSION = 2
 # snmpwalk -v 2 -c public target ifDescr
 _WAN_ADAPTER = 5
 ```
-8. Run via `python wan-snmp-to-firebase.py`
-9. Check Firebase to verify the data (you can append `.json` to an endpoint record to get JSON):
+8.Run via `python wan-snmp-to-firebase.py`
+9.Check Firebase to verify the data (you can append `.json` to an endpoint record to get JSON):
 ```
 {
     "calc": {
