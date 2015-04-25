@@ -12,6 +12,11 @@ _WAN_HOST = "[SOME_IP_ADDRESS_OR_ADDRESS]"
 _WAN_COMMUNITY = "public"
 _WAN_SNMP_VERSION = 2
 
+# We only want to watch one adapter, so we set the target
+# You can find this by parsing ifDescr:
+# snmpwalk -v 2 -c public target ifDescr
+_WAN_ADAPTER = 5
+
 def octetsToBytesSpeed(input):
     if input < 1048576:
             speed = str(round((input / 10.24) / 100, 2))
@@ -54,20 +59,20 @@ last_ifInOctets = 0
 last_timestamp = time.time()
 
 while True:
-    # The first time the script runs, we have no change to send  
+    # The first time the script runs, we have no change to send
     if last_ifOutOctets == 0:
-        last_ifOutOctets = m.ifOutOctets[5]
-        last_ifInOctets = m.ifInOctets[5]
+        last_ifOutOctets = m.ifOutOctets[_WAN_ADAPTER]
+        last_ifInOctets = m.ifInOctets[_WAN_ADAPTER]
         last_timestamp = time.time()
     else:
-        holder_timestamp = time.time()    
+        holder_timestamp = time.time()
 
         diff_timestamp  = holder_timestamp - last_timestamp;
-        diff_ifInOctets  = m.ifInOctets[5] - last_ifInOctets;
-        diff_ifOutOctets = m.ifOutOctets[5] - last_ifOutOctets;   
+        diff_ifInOctets  = m.ifInOctets[_WAN_ADAPTER] - last_ifInOctets;
+        diff_ifOutOctets = m.ifOutOctets[_WAN_ADAPTER] - last_ifOutOctets;
     
         split_ifOutOctets = diff_ifOutOctets / diff_timestamp
-        split_ifInOctets = diff_ifInOctets / diff_timestamp     
+        split_ifInOctets = diff_ifInOctets / diff_timestamp
 
         calc_bytes_ifOutOctets = octetsToBytesSpeed(split_ifOutOctets)
         calc_bits_ifOutOctets = octetsToBitsSpeed(split_ifOutOctets)
@@ -75,14 +80,14 @@ while True:
         calc_bytes_ifInOctets = octetsToBytesSpeed(split_ifInOctets)
         calc_bits_ifInOctets = octetsToBitsSpeed(split_ifInOctets)
 
-        last_ifOutOctets = m.ifOutOctets[5]
-        last_ifInOctets = m.ifInOctets[5]
+        last_ifOutOctets = m.ifOutOctets[_WAN_ADAPTER]
+        last_ifInOctets = m.ifInOctets[_WAN_ADAPTER]
         last_timestamp = holder_timestamp
     
         result = {
             'raw': {
-                'ifOutOctets': m.ifOutOctets[5],
-                'ifInOctets': m.ifInOctets[5],
+                'ifOutOctets': m.ifOutOctets[_WAN_ADAPTER],
+                'ifInOctets': m.ifInOctets[_WAN_ADAPTER],
                 'timestamp': holder_timestamp
             },
             'calc': {
