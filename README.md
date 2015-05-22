@@ -2,14 +2,10 @@
 
 This script reads SNMP data from a network interface and pushes that data to a Firebase endpoint.
 
-## Why?
-
-Little something something to wire up to my [bandwidth-gauge Polymer element](https://github.com/justinribeiro/bandwidth-gauge) for [GDG Oakdale's Firebase Code Day](http://www.meetup.com/GDG-Oakdale/events/220949519/).
-
 ## Dependencies
 
 1. [Snimpy](https://snimpy.readthedocs.org/en/latest/)
-2. [firebase-python](https://pypi.python.org/pypi/python-firebase/1.2)
+2. [python-firebase](https://pypi.python.org/pypi/python-firebase/1.2)
 
 ## Setup
 
@@ -35,9 +31,9 @@ sudo download-mibs
 ```
 pip install snimpy
 ```
-6.Install firebase-python:
+6.Install python-firebase:
 ```
-pip install firebase-python
+pip install python-firebase
 ```
 7.Edit the `wan-snmp-to-firebase.py` paths in the file:
 ```
@@ -83,3 +79,7 @@ _WAN_ADAPTER = 5
     }
 }
 ```
+
+## Why?
+
+Example bridge to wire up to my [bandwidth-gauge Polymer element](https://github.com/justinribeiro/bandwidth-gauge) for [GDG Oakdale's Firebase Code Day](http://www.meetup.com/GDG-Oakdale/events/220949519/).
